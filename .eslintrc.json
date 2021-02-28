@@ -20,7 +20,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "testing-library"],
+  "plugins": ["react", "testing-library", "only-warn"],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "testing-library/await-async-query": "error",
