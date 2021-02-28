@@ -1,23 +1,39 @@
-import logo from './logo.svg'
+import React from 'react'
+
+import { apiGetPosts } from './apis/postsAPI'
 
 function App() {
+  const [posts, setPosts] = React.useState([])
+
+  const fetchMorePosts = async () => {
+    try {
+      const { data = [] } = await apiGetPosts()
+
+      setPosts(
+        data.map((post) => ({
+          id: post?.id,
+          title: post?.title,
+          excerpt: post?.excerpt
+        }))
+      )
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  React.useEffect(() => {
+    fetchMorePosts()
+  }, [])
+
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      {posts.map((post) => (
+        <article>
+          <h2>{post.title}</h2>
+          <p>{post.excerpt}</p>
+        </article>
+      ))}
+    </main>
   )
 }
 
