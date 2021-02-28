@@ -2,6 +2,11 @@ import React from 'react'
 
 import { apiGetPosts } from './apis/postsAPI'
 
+import Page from './components/Page'
+import PostsContainer from './components/PostsContainer'
+import Post from './components/Post'
+import Loader from './components/Loader'
+
 function App() {
   const [posts, setPosts] = React.useState([])
   const [page, setPage] = React.useState(1)
@@ -57,18 +62,18 @@ function App() {
   }, [])
 
   return (
-    <main>
-      {posts.map((post) => (
-        <article key={post.id}>
-          <h2>{post.title}</h2>
-          <p>{post.excerpt}</p>
-        </article>
-      ))}
+    <Page>
+      <PostsContainer>
+        {posts.map((post) => (
+          <Post key={post.id}>
+            <h2>{post.title}</h2>
+            <p>{post.excerpt}</p>
+          </Post>
+        ))}
 
-      <div className='loading' ref={loader}>
-        <h2>Loading...</h2>
-      </div>
-    </main>
+        <Loader ref={loader} />
+      </PostsContainer>
+    </Page>
   )
 }
 
