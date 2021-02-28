@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/dcard-reader/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/dcard-reader/static/js/main.2e3f0f8d.chunk.js",
+    "main.js.map": "/dcard-reader/static/js/main.2e3f0f8d.chunk.js.map",
+    "runtime-main.js": "/dcard-reader/static/js/runtime-main.dc07235d.js",
+    "runtime-main.js.map": "/dcard-reader/static/js/runtime-main.dc07235d.js.map",
+    "static/js/2.6ce36348.chunk.js": "/dcard-reader/static/js/2.6ce36348.chunk.js",
+    "static/js/2.6ce36348.chunk.js.map": "/dcard-reader/static/js/2.6ce36348.chunk.js.map",
+    "static/js/3.7bf6758c.chunk.js": "/dcard-reader/static/js/3.7bf6758c.chunk.js",
+    "static/js/3.7bf6758c.chunk.js.map": "/dcard-reader/static/js/3.7bf6758c.chunk.js.map",
+    "index.html": "/dcard-reader/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/dcard-reader/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.6ce36348.chunk.js.LICENSE.txt": "/dcard-reader/static/js/2.6ce36348.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/dcard-reader/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dc07235d.js",
+    "static/js/2.6ce36348.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.2e3f0f8d.chunk.js"
+  ]
+}
