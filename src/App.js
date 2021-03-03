@@ -6,10 +6,10 @@ import Page from './components/Page'
 import PostsContainer from './components/PostsContainer'
 import Post from './components/Post'
 import Loader from './components/Loader'
+import VisibilitySensor from './components/VisibilitySensor'
 
 function App() {
   const [posts, setPosts] = React.useState([])
-  const [page, setPage] = React.useState(1)
   const [isFetching, setIsFetching] = React.useState(false)
 
   const fetchMorePosts = async () => {
@@ -34,33 +34,6 @@ function App() {
     setIsFetching(false)
   }
 
-  React.useEffect(() => {
-    fetchMorePosts()
-  }, [page])
-
-  const loader = React.useRef(null)
-
-  const handleObserver = (entities) => {
-    const target = entities[0]
-    if (target.isIntersecting) {
-      setPage((prevPage) => prevPage + 1)
-    }
-  }
-
-  React.useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: '20px',
-      threshold: 0
-    }
-    // initialize IntersectionObserver
-    // and attaching to Load More div
-    const observer = new window.IntersectionObserver(handleObserver, options)
-    if (loader.current) {
-      observer.observe(loader.current)
-    }
-  }, [])
-
   return (
     <Page>
       <PostsContainer>
@@ -71,7 +44,9 @@ function App() {
           </Post>
         ))}
 
-        <Loader ref={loader} />
+        <VisibilitySensor onEnter={fetchMorePosts}>
+          <Loader />
+        </VisibilitySensor>
       </PostsContainer>
     </Page>
   )
