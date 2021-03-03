@@ -20,8 +20,8 @@ function App() {
       const idOfLastPost = posts.length > 0 ? posts[posts.length - 1].id : null
       const { data = [] } = await apiGetPosts(idOfLastPost)
 
-      setPosts([
-        ...posts,
+      setPosts((prevPosts) => [
+        ...prevPosts,
         ...data.map((post) => ({
           id: post.id,
           title: post.title,
