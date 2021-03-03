@@ -3,14 +3,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Loader = React.forwardRef((props, ref) => (
-  <div ref={ref} {...props}>
+const Loader = (props) => (
+  <div {...props}>
     <div />
     <div />
     <div />
     <div />
   </div>
-))
+)
 
 const StyledLoader = styled(Loader)`
   display: inline-block;
