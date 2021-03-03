@@ -4,21 +4,23 @@ import PropTypes from 'prop-types'
 function VisibilitySensor(props) {
   const { onEnter, children } = props
 
-  const [page, setPage] = React.useState(1)
+  // entry object from IntersectionObserver, used to check visibility
+  const [entry, setEntry] = React.useState({})
 
+  // when this component is visible, call onEnter callback
   React.useEffect(() => {
-    onEnter()
-  }, [page])
+    if (entry.isIntersecting) {
+      onEnter()
+    }
+  }, [entry.isIntersecting])
 
   const sensorRef = React.useRef(null)
 
   const handleObserver = (entities) => {
-    const target = entities[0]
-    if (target.isIntersecting) {
-      setPage((prevPage) => prevPage + 1)
-    }
+    setEntry(entities[0])
   }
 
+  // Set up IntersectionObserver
   React.useEffect(() => {
     const options = {
       root: null,
@@ -29,14 +31,19 @@ function VisibilitySensor(props) {
     if (sensorRef.current) {
       observer.observe(sensorRef.current)
     }
+    return () => observer.disconnect()
   }, [])
 
   return <div ref={sensorRef}>{children}</div>
 }
 
 VisibilitySensor.propTypes = {
+  /** Callback function, called when this component is visible */
   onEnter: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
 }
 
 export default VisibilitySensor
