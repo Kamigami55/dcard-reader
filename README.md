@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# Dcard Reader
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+串接 Dcard 文章 API，自製簡單的 Dcard Reader
 
-## Available Scripts
+作者：Eason Chang
 
-In the project directory, you can run:
+![](preview.gif)
 
-### `yarn start`
+Live Demo: https://www.easonchang.com/dcard-reader/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Local 啟動方法
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+yarn start
+# or
+npm start
+```
 
-### `yarn test`
+## 技術重點
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 手刻 Infinite Scroll，頁面滑到最下面時再 call API 拿後續文章資料，使用 IntersectionObserver API 實作
+- 自架 [proxy server](https://github.com/Kamigami55/eason-proxy) 處理 CORS 問題
+- styled-components 簡單樣式切版
+- axios 串接 API
 
-### `yarn build`
+## 專案架構
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+使用 create-react-app 來建立專案模板
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+/dcard-reader
+├── src
+│   ├── App.js                  # 主頁面邏輯
+│   ├── apis
+│   │   └── postsAPI.js         # API 串接
+│   └── components
+│       ├── Loader.js           # Loading 動畫 UI
+│       ├── Page.js             # 頁面 UI
+│       ├── Post.js             # 文章 UI
+│       ├── PostsContainer.js   # 文章列表 UI
+│       └── VisibilitySensor.js # infinite scroll 實作
+├── .eslintrc.json              # eslint 設定
+└── .prettierrc                 # prettier 設定
+```
